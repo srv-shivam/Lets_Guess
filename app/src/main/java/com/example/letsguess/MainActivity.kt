@@ -1,10 +1,13 @@
 package com.example.letsguess
 
+import android.content.DialogInterface
 import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
 import android.view.View
+import android.widget.ProgressBar
 import android.widget.RatingBar
+import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
@@ -13,12 +16,68 @@ import androidx.cardview.widget.CardView
 class MainActivity : AppCompatActivity() {
 
     private lateinit var customRateUsView: View
+    private lateinit var tvAndroidNumberDisplay: TextView
+    private lateinit var cardNumber1: CardView
+    private lateinit var cardNumber2: CardView
+    private lateinit var cardNumber3: CardView
+    private lateinit var cardNumber4: CardView
+    private lateinit var cardNumber5: CardView
+    private lateinit var progressBar: ProgressBar
+    private lateinit var tvProgressBarPercentage: TextView
+    private var androidGuess: Int = 0
+    private var userGuess: Int = 0
+    private var numberOfMoves: Int = 0
+    private var progressPercentage: Int = 0
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
         setSupportActionBar(findViewById(R.id.customToolBar))
+
+        cardNumber1 = findViewById(R.id.cardNumber1)
+        cardNumber2 = findViewById(R.id.cardNumber2)
+        cardNumber3 = findViewById(R.id.cardNumber3)
+        cardNumber4 = findViewById(R.id.cardNumber4)
+        cardNumber5 = findViewById(R.id.cardNumber5)
+        tvAndroidNumberDisplay = findViewById(R.id.tv_androidNumberDisplay)
+        progressBar = findViewById(R.id.progressBar)
+        tvProgressBarPercentage = findViewById(R.id.tv_progressBarPercentage)
+
+        tvProgressBarPercentage.text = progressPercentage.toString()
+
+        cardNumber1.setOnClickListener {
+            androidGuess(1)
+        }
+        cardNumber2.setOnClickListener {
+            androidGuess(2)
+        }
+        cardNumber3.setOnClickListener {
+            androidGuess(3)
+        }
+        cardNumber4.setOnClickListener {
+            androidGuess(4)
+        }
+        cardNumber5.setOnClickListener {
+            androidGuess(5)
+        }
+
+    }
+
+    private fun androidGuess(user: Int) {
+        userGuess = user
+        androidGuess = (1..5).random()
+
+        if (userGuess == androidGuess && progressPercentage <= 80) {
+            progressPercentage += 20
+            progressBar.progress = progressPercentage
+            tvProgressBarPercentage.text = "$progressPercentage%"
+            guessMatched()
+        } else {
+            guessNotMatched()
+        }
+        tvAndroidNumberDisplay.text =
+            "Android guess $androidGuess user guess: $userGuess"
     }
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
@@ -79,6 +138,26 @@ class MainActivity : AppCompatActivity() {
             dialog.dismiss()
         }
 
+        dialog.show()
+    }
+
+    private fun guessMatched() {
+
+        val dialog = AlertDialog.Builder(this@MainActivity)
+            .setPositiveButton("Continue", DialogInterface.OnClickListener { _, _ ->
+            })
+            .create()
+        dialog.setTitle("Correct Guess")
+        dialog.show()
+
+    }
+
+    private fun guessNotMatched() {
+        val dialog = AlertDialog.Builder(this@MainActivity)
+            .setPositiveButton("Retry", DialogInterface.OnClickListener { _, _ ->
+            })
+            .create()
+        dialog.setTitle("InCorrect Guess")
         dialog.show()
     }
 }
