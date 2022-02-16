@@ -3,6 +3,8 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/Users/SHIVAM/AndroidStudioProjects/LetsGuess/app/src/main/res/drawable/ic_rule.xml" value="0.179" />
+        <entry key="..\:/Users/SHIVAM/AndroidStudioProjects/LetsGuess/app/src/main/res/drawable/ic_star_rate.xml" value="0.179" />
         <entry key="..\:/Users/SHIVAM/AndroidStudioProjects/LetsGuess/app/src/main/res/drawable/toolbar_background.xml" value="0.179" />
         <entry key="..\:/Users/SHIVAM/AndroidStudioProjects/LetsGuess/app/src/main/res/layout/activity_main.xml" value="0.25" />
         <entry key="..\:/Users/SHIVAM/AndroidStudioProjects/LetsGuess/app/src/main/res/layout/activity_splash_screen.xml" value="0.25" />
