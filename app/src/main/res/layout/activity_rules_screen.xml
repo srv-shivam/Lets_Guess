@@ -4,11 +4,12 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@drawable/splash_screen_bg"
     tools:context=".RulesScreenActivity">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="wrap_content">
 
         <TextView
             android:id="@+id/textView3"
@@ -17,7 +18,7 @@
             android:layout_marginTop="30dp"
             android:text="Rules of the Game"
             android:textColor="@color/black"
-            android:textSize="30sp"
+            android:textSize="40sp"
             android:textStyle="bold"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.2"
@@ -28,9 +29,14 @@
             android:id="@+id/textView4"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_margin="30dp"
-            android:text="ABCD\n\n\nn\n\n\nn\n\n\n\n\nn\n\n\n\nn\n\n\n\\n\n\n\n\n\n\nn\\n\n\n\n\nn\n\n\\nn\"
-            android:textSize="20sp"
+            android:layout_marginStart="30dp"
+            android:layout_marginTop="50dp"
+            android:layout_marginEnd="30dp"
+            android:layout_marginBottom="20dp"
+            android:fontFamily="monospace"
+            android:text="@string/rules_string"
+            android:textColor="@color/white"
+            android:textSize="26sp"
             android:textStyle="italic"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="@+id/textView3"

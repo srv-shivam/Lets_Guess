@@ -1,4 +1,5 @@
 <resources>
     <string name="app_name">Let\'s Guess</string>
     <string name="let_s_guess">Let\'s Guess</string>
+    <string name="rules_string">This game is about, In how many less moves user can achieve 100 points while guessing the exact number from range of 1 to 5 with "Android"\n\nInstructions to play this guessing game:-\n\n\n\t1) There will 5 buttons with 1 to 5 numbers with each button.\n\n\t2) User need to select any of the number.\n\n\t3) If user and the Android guessed number matches than user gets 20 points and if guess wrong no points awarded.\n\n\t4) User need to guess the numbers in as less moves.\n\n\nGood Luck for the game!! :)</string>
 </resources>

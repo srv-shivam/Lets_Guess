@@ -1,7 +1,8 @@
 package com.example.letsguess
 
-import android.content.DialogInterface
+import android.content.Intent
 import android.os.Bundle
+import android.view.Gravity
 import android.view.Menu
 import android.view.MenuItem
 import android.view.View
@@ -26,7 +27,6 @@ class MainActivity : AppCompatActivity() {
     private lateinit var tvProgressBarPercentage: TextView
     private var androidGuess: Int = 0
     private var userGuess: Int = 0
-    private var numberOfMoves: Int = 0
     private var progressPercentage: Int = 0
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -64,6 +64,21 @@ class MainActivity : AppCompatActivity() {
 
     }
 
+    private fun showCustomToast() {
+        val layout: View =
+            layoutInflater.inflate(
+                R.layout.custom_welcome_toast_layout,
+                findViewById(R.id.customWelcomeToast)
+            )
+
+        Toast(this).apply {
+            duration = Toast.LENGTH_LONG
+            Gravity.BOTTOM
+            view = layout
+            show()
+        }
+    }
+
     private fun androidGuess(user: Int) {
         userGuess = user
         androidGuess = (1..5).random()
@@ -72,12 +87,9 @@ class MainActivity : AppCompatActivity() {
             progressPercentage += 20
             progressBar.progress = progressPercentage
             tvProgressBarPercentage.text = "$progressPercentage%"
-            guessMatched()
-        } else {
-            guessNotMatched()
         }
         tvAndroidNumberDisplay.text =
-            "Android guess $androidGuess user guess: $userGuess"
+            "Android Guess: $androidGuess User Guess: $userGuess"
     }
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
@@ -89,11 +101,8 @@ class MainActivity : AppCompatActivity() {
 
         when (item.itemId) {
             R.id.menu_rules -> {
-                Toast.makeText(
-                    applicationContext,
-                    "Clicked on Rules",
-                    Toast.LENGTH_SHORT
-                ).show()
+                val intent = Intent(this@MainActivity, RulesScreenActivity::class.java)
+                startActivity(intent)
                 return true
             }
             R.id.menu_rate_us -> {
@@ -130,7 +139,7 @@ class MainActivity : AppCompatActivity() {
             }
 
         submitButton.setOnClickListener {
-            Toast.makeText(this@MainActivity, "Thanks To rate us :)", Toast.LENGTH_SHORT).show()
+            showCustomToast()
             dialog.dismiss()
         }
 
@@ -138,26 +147,6 @@ class MainActivity : AppCompatActivity() {
             dialog.dismiss()
         }
 
-        dialog.show()
-    }
-
-    private fun guessMatched() {
-
-        val dialog = AlertDialog.Builder(this@MainActivity)
-            .setPositiveButton("Continue", DialogInterface.OnClickListener { _, _ ->
-            })
-            .create()
-        dialog.setTitle("Correct Guess")
-        dialog.show()
-
-    }
-
-    private fun guessNotMatched() {
-        val dialog = AlertDialog.Builder(this@MainActivity)
-            .setPositiveButton("Retry", DialogInterface.OnClickListener { _, _ ->
-            })
-            .create()
-        dialog.setTitle("InCorrect Guess")
         dialog.show()
     }
 }
